@@ -10,29 +10,36 @@
 
 <style>
   :root{
-    --bg:#071827; --card:#172946; --accent:#1fb6ff; --muted:#9fb3c8; --text:#e6f7ff;
+    --bg:#261c1c; --card:#172946; --accent:#1fb6ff; --muted:#14c3cc; --text:#ffffff;
   }
   html,body{
-    height:100%;margin:0;font-family:Inter,Segoe UI,Arial;background-image: url(arena.webp);background-repeat:no-repeat;background-size: cover;background-attachment:fixed;color:var(--text)
+    height:100%;margin:0;font-family:Inter,Segoe UI,Arial;background-image: url(arena.webp);background-repeat:no-repeat;
+    background-size: cover;background-attachment:fixed;color:var(--text)
 }
   .wrap{
-    max-width:1200px;margin:28px auto;padding:20px
+    max-width:90%;margin:20px auto;padding:20px
 }
   header{
     display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px
 }
   h1{
-    font-size:20px;margin:0;
+    font-size:60px;margin:0;
 }
-  .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 6px 18px rgba(121, 168, 223, 0.6)}
-  .small{font-size:13px;color:var(--muted)}
+  .card{background:var(--card);padding:14px;border-radius:10px;box-shadow:0 8px 12px rgba(72, 236, 239, 0.6)}
+  .small{font-size:20px;color:var(--muted)}
   .controls{display:flex;gap:8px;align-items:center}
-  table{width:100%;border-collapse:collapse;margin-top:12px}
-  th,td{padding:8px 10px;text-align:left;border-bottom:1px solid rgba(255,255,255,.04);font-size:13px;vertical-align:middle}
-  th{color:var(--muted);font-weight:600}
-  .team-cell{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:360px}
+  table{
+    width:100%;border-collapse:collapse;margin-top:12px
+  }
+  th,td{
+    padding:8px 10px;text-align:center;border-bottom:1px solid rgba(244, 0, 0, 0.04);font-size:18px;vertical-align:middle
+  }
+  th{
+    color:var(--muted);font-weight:600
+  }
+  .team-cell{font-size:12px;color:var(--muted);white-space:nowrap;overflow:scroll;text-overflow:hide;max-width:760px}
   .rank{font-weight:700;color:var(--accent);width:48px}
-  .spark{width:120px;height:36px}
+  .spark{width: 120px;px;height:36px}
   .layout{display:grid;grid-template-columns:1fr;gap:16px}
   .chart-area{height:360px}
   .btn{background:var(--accent);border:none;color:#04202b;padding:8px 10px;border-radius:8px;cursor:pointer}
@@ -60,7 +67,7 @@
     </div>
   </header>
 
-  <section class="card" style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:center">
+  <section class="card" style="margin-bottom:12px;display:flex;justify-content:space-between;align-items:left">
     <div>
       <div><strong>Total Goalies:</strong> <span id="totalGoalies">0</span></div>
       <div class="small">Ranking defaults to lowest GAA = best rank. Click a row to highlight that goalie on the group chart below.</div>
@@ -75,7 +82,7 @@
           <th class="rank">Rank</th>
           <th>Goalie</th>
           <th>GAA</th>
-          <th>Games Played</th>
+          <th>GP</th>
           <th>Win %</th>
           <th>Games by Team (7)</th>
           <th>Last 10 GAA</th>
