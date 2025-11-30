@@ -19,6 +19,9 @@
   .wrap{
     max-width:90%;margin:20px auto;padding:20px
 }
+  .names{
+    color: #ffffff; font-weight: bold;
+  }
   header{
     display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px
 }
@@ -72,9 +75,39 @@
       <div style="font-size:x-large;"><strong>Sunday Line-Up</strong></div>
       <div class="small" style="font-size: x-large;"><strong>November 30th</strong></div>
       <div class="small" style="margin-top:9px; text-align: center; font-size: xx-large;">
-        G1. <strong>Ray</strong> / Wings vs Oilers / <strong>Shay</strong> <br> 
-        G2. <strong>Aken</strong> / Revs vs Bears / <strong>Moose</strong> <br>
-        G3. <strong>JY</strong> / Bulls vs Expos / <strong>Ray</strong>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Below is where the names for the current Sunday line-up are entered-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        G1. <span class="names">Ray</span> / Wings vs Oilers / <span class="names">Shay</span><br> 
+        G2. <span class="names">Aken</span> / Revs vs Bears / <span class="names">Moose</span><br>
+        G3. <span class="names">JY</span> / Bulls vs Expos / <span class="names">Ray</span>
       </div>
     </div>
   </section>
@@ -135,11 +168,42 @@
 /* Teams (7) */
 const teams = ["Warriors","Expos","Oilers","Bulls","Hot Wings","Bears","Revs"];
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* 9 goalies dataset
    - goalsAgainst and minutes compute overall GAA
    - gamesByTeam: 7 numbers
    - last10GAA: array of 10 numbers (older → recent)
 */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const goalies = [
   {name:"Shay", goalsAgainst:44, minutes:660, wins:6, losses:5, ties:0, gamesByTeam:[1,0,2,2,0,4,2],
    last10GAA:[5,4,2,6,1,4,5,4,8,0]},
@@ -432,7 +496,39 @@ createGroupChart();
   </div>
 
   <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // Example data — replace or load dynamically
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     const data = [
       { team: "Hot Wings",   wins: 3, losses: 5,  otWins: 0 },
       { team: "Expos",    wins: 5, losses: 3,  otWins: 0 },
