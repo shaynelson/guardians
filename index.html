@@ -16,6 +16,25 @@
     height:100%;margin:0;font-family:Inter,Segoe UI,Arial;background-image: url(arena.webp);background-repeat:no-repeat;
     background-size: cover;background-attachment:fixed;color:var(--text)
 }
+.neon-text {
+    font-size: 4rem;
+    color: #ffffff;
+    text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
+    animation: glow 2.5s infinite alternate;
+    background:var(--card);
+    padding: 14px;
+    border-radius: 10px;
+    box-shadow: 0 8px 12px rgba(72, 236, 239, 0.6);
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
+    }
+    100% {
+        text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 40px #00d4ff, 0 0 80px #00d4ff, 0 0 160px #00d4ff;
+    }
+}
   .wrap{
     max-width:90%;margin:20px auto;padding:20px
 }
@@ -40,13 +59,13 @@
   th{
     color:var(--muted);font-weight:600
   }
-  .team-cell{font-size:12px;color:var(--muted);white-space:nowrap;overflow:scroll;text-overflow:hide;max-width:760px}
+  .team-cell{font-size:20px;color:var(--muted);white-space:nowrap;overflow:auto;text-overflow:hide;max-width:760px}
   .rank{font-weight:700;color:var(--accent);width:48px}
   .spark{width: 120px;px;height:36px}
   .layout{display:grid;grid-template-columns:1fr;gap:16px}
   .chart-area{height:360px}
   .btn{background:var(--accent);border:none;color:#04202b;padding:8px 10px;border-radius:8px;cursor:pointer}
-  tr.clickable{cursor:pointer}
+  tr.clickable{cursor}
   tr.clickable:hover{background:rgba(31,182,255,0.03)}
   footer{margin-top:18px}
   @media (min-width:980px){
@@ -58,7 +77,7 @@
 <body>
 <div class="wrap">
   <header>
-    <h1 class="card">Beijing Guardians Stat Block</h1>
+    <h1 class="neon-text">Beijing Guardians Stat Block</h1>
     <div class="controls">
       <label class="small">Sort by</label>
       <select id="sortBy" class="card" style="color: #1fb6ff;"padding:6px;border-radius:8px">
@@ -73,7 +92,7 @@
   <section class="card" style="margin-bottom:12px;display:float;justify-content:space-between;align-items:center; text-align: center;">
     <div>
       <div style="font-size:x-large;"><strong>Sunday Line-Up</strong></div>
-      <div class="small" style="font-size: x-large;"><strong>November 30th</strong></div>
+      <div class="small" style="font-size: x-large;"><strong>December 7th</strong></div>
       <div class="small" style="margin-top:9px; text-align: center; font-size: xx-large;">
 
 
@@ -105,9 +124,9 @@
 
 
 
-        G1. <span class="names">Ray</span> / Wings vs Oilers / <span class="names">Shay</span><br> 
-        G2. <span class="names">Aken</span> / Revs vs Bears / <span class="names">Moose</span><br>
-        G3. <span class="names">JY</span> / Bulls vs Expos / <span class="names">Ray</span>
+        G1. <span class="names">-</span> / Warriors vs Bulls / <span class="names">-</span><br> 
+        G2. <span class="names">-</span> / Hot Wings vs Revs / <span class="names">-</span><br>
+        G3. <span class="names">-</span> / Expos vs Oilers / <span class="names">-</span>
       </div>
     </div>
   </section>
@@ -117,7 +136,7 @@
       <div><strong>Total Goalies:</strong> <span id="totalGoalies">0</span></div>
       <div class="small">Ranking defaults to lowest GAA = best rank. Click a row to highlight that goalie on the group chart below.</div>
     </div>
-    <div class="small">Through Week: <strong>10</strong></div>
+    <div class="small">Through Week: <strong>11</strong></div>
   </section>
 
   <div class="card" style="overflow:auto">
@@ -137,7 +156,7 @@
     </table>
   </div>
 
-  <div class="layout" style="margin-top:14px">
+  <div class="float" style="margin-top:14px">
     <div class="card chart-area">
       <div style="display:flex;justify-content:space-between;align-items:center">
         <div>
@@ -149,7 +168,7 @@
           <button id="hideAll" class="btn">Hide All</button>
         </div>
       </div>
-      <canvas id="groupChart" style="margin-top:12px;width:100%;height:100%"></canvas>
+      <canvas id="groupChart" style="margin-top:2px;width:100%;height:100%"></canvas>
     </div>
 
     <div class="card" style="padding:12px;max-height:420px;overflow:auto">
@@ -205,24 +224,24 @@ const teams = ["Warriors","Expos","Oilers","Bulls","Hot Wings","Bears","Revs"];
 
 
 const goalies = [
-  {name:"Shay", goalsAgainst:44, minutes:660, wins:6, losses:5, ties:0, gamesByTeam:[1,0,2,2,0,4,2],
-   last10GAA:[5,4,2,6,1,4,5,4,8,0]},
+  {name:"Shay", goalsAgainst:49, minutes:720, wins:6, losses:6, ties:0, gamesByTeam:[1,0,3,2,0,4,2],
+   last10GAA:[4,2,6,1,4,5,4,8,0,5]},
   {name:"Olli", goalsAgainst:38, minutes:660, wins:8, losses:3, ties:0, gamesByTeam:[2,2,22,1,2,1,1],
    last10GAA:[4,4,3,4,4,4,2,2,3,5]},
-  {name:"Ray", goalsAgainst:72, minutes:780, wins:4, losses:9, ties:0, gamesByTeam:[2,2,2,1,1,3,2],
-   last10GAA:[2,4,7,3,4,8,12,3,6,6]},
-  {name:"JY", goalsAgainst:61, minutes:660, wins:6, losses:5, ties:0, gamesByTeam:[1,2,1,2,4,1,0],
-   last10GAA:[5,9,6,4,9,7,3,5,4,5]},
-  {name:"Aken", goalsAgainst:32, minutes:240, wins:0, losses:4, ties:0, gamesByTeam:[1,1,0,0,0,0,2],
-   last10GAA:[0,0,0,0,0,0,11,9,6,6]},
+  {name:"Ray", goalsAgainst:79, minutes:900, wins:6, losses:9, ties:0, gamesByTeam:[2,3,2,1,2,3,2],
+   last10GAA:[7,3,4,8,12,3,6,6,4,3]},
+  {name:"JY", goalsAgainst:67, minutes:720, wins:6, losses:6, ties:0, gamesByTeam:[1,2,1,3,4,1,0],
+   last10GAA:[9,6,4,9,7,3,5,4,5,6]},
+  {name:"Aken", goalsAgainst:40, minutes:300, wins:0, losses:5, ties:0, gamesByTeam:[1,1,0,0,0,0,3],
+   last10GAA:[0,0,0,0,0,11,9,6,6,8]},
   {name:"Tomasz", goalsAgainst:21, minutes:180, wins:1, losses:2, ties:0, gamesByTeam:[1,0,1,1,0,0,0],
    last10GAA:[0,0,0,0,0,0,0,9,4,8,]},
   {name:"Rich", goalsAgainst:6, minutes:120, wins:1, losses:1, ties:0, gamesByTeam:[0,0,0,0,0,0,2],
    last10GAA:[0,0,0,0,0,0,0,0,2,4]},
   {name:"Neil", goalsAgainst:7, minutes:60, wins:1, losses:0, ties:0, gamesByTeam:[0,1,0,0,0,0,0],
    last10GAA:[0,0,0,0,0,0,0,0,0,7]},
-  {name:"Moose", goalsAgainst:20, minutes:180, wins:2, losses:1, ties:0, gamesByTeam:[1,0,1,0,1,0,0],
-   last10GAA:[0,0,0,0,0,0,0,9,8,3]}
+  {name:"Moose", goalsAgainst:28, minutes:240, wins:3, losses:1, ties:0, gamesByTeam:[1,0,1,0,1,1,0],
+   last10GAA:[0,0,0,0,0,0,9,8,3,8]}
 ];
 
 /* Compute derived stats */
@@ -530,13 +549,13 @@ createGroupChart();
 
 
     const data = [
-      { team: "Hot Wings",   wins: 3, losses: 5,  otWins: 0 },
-      { team: "Expos",    wins: 5, losses: 3,  otWins: 0 },
-      { team: "Bears",     wins: 2, losses: 6, otWins: 1 },
-      { team: "Bulls",    wins: 6, losses: 2,  otWins: 0 },
+      { team: "Hot Wings",   wins: 4, losses: 5,  otWins: 0 },
+      { team: "Expos",    wins: 6, losses: 3,  otWins: 0 },
+      { team: "Bears",     wins: 3, losses: 6, otWins: 1 },
+      { team: "Bulls",    wins: 6, losses: 3,  otWins: 0 },
       { team: "Warriors",    wins: 6, losses: 2, otWins: 1 },
-      { team: "Revs",   wins: 4, losses: 5,  otWins: 0 },
-      { team: "Oilers",   wins: 4, losses: 4, otWins: 1 }
+      { team: "Revs",   wins: 4, losses: 5,  otWins: 1 },
+      { team: "Oilers",   wins: 4, losses: 5, otWins: 1 }
     ];
 
     // Customize scoring here
@@ -616,5 +635,138 @@ createGroupChart();
     // Init
     render();
   </script>
+  <section class="card" style="margin-bottom:12px;display:float;justify-content:space-between;align-items:center; text-align: center;">
+    <div>
+      <div style="font-size:x-large;"><strong>Total Goals Against</strong></div>
+      <div class="small" style="font-size: x-large;"><strong></strong></div>
+      <div class="small" style="margin-top:9px; text-align: center; font-size: xx-large;"></div>
+      <table>
+        <tr>
+          <th>Hot Wings</th>
+          <th>Bears</th>
+          <th>Bulls</th>
+          <th>Revs</th>
+          <th>Oilers</th>
+          <th>Expos</th>
+          <th>Warriors</th>
+        </tr>
+        <tr>
+          <td>55</td>
+          <td>46</td>
+          <td>45</td>
+          <td>68</td>
+          <td>43</td>
+          <td>42</td>
+          <td>40</td>
+        </tr>
+        
+      </table>
+    </div>
+  </section>
+  <section class="card" style="margin-bottom:12px;display:float;justify-content:space-between;align-items:center; text-align: center;">
+    <div>
+      <div style="font-size:x-large;"><strong>Game History</strong></div>
+      <div class="small" style="font-size: x-large;"><strong></strong></div>
+      <div class="small" style="margin-top:9px; text-align: center; font-size: xx-large;"></div>
+      <table>
+        <tr>
+          <th>Week</th>
+          <th>Date</th>
+          <th>Game 1</th>
+          <th>Game 2</th>
+          <th>Game 3</th>
+          <th>Bye</th>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>30 Nov 25</td>
+          <td>Hot Wings 5 v Oilers 4</td>
+          <td>Revs 8 (OTL) v Bears 8</td>
+          <td>Expos 6 v Bulls 3</td>
+          <td>Warriors</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>23 Nov 25</td>
+          <td>Revs 4 v Warriors 8</td>
+          <td>Bears 8 v Oilers 0</td>
+          <td>Hot Wings 6 v Expos 5</td>
+          <td>Bulls</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>16 Nov 25</td>
+          <td>Warriors 4 v Bears 4 (OTL)</td>
+          <td>Expos 5 v Revs 6</td>
+          <td>Oilers 3 v Bulls 5</td>
+          <td>Hot Wings</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>9 Nov 25</td>
+          <td>Oilers 5 v Revs 3</td>
+          <td>Warriors 3 v Hot Wings 6</td>
+          <td>Bears 3 v Bulls 6</td>
+          <td>Expos</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>2 Nov 25</td>
+          <td>Revs 5 v Bulls 12</td>
+          <td>Bears 9 v Wings 3</td>
+          <td>Warriors 7 v Expos 2</td>
+          <td>Oilers</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>26 Oct 25</td>
+          <td>Oilers 4 v Warriors 4 (OTL)</td>
+          <td>Bears 2 v Expos 4</td>
+          <td>Hot Wings 4 v Bulls 8</td>
+          <td>Revs</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>19 Oct 25</td>
+          <td>Hot Wings 3 v Expos 4</td>
+          <td>Revs 8 v Warriors 9</td>
+          <td>Bears 1 v Oilers 6</td>
+          <td>Bulls</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>12 Oct 25</td>
+          <td>Expos 9 v Bulls 7</td>
+          <td>Hot Wings 2 v Oilers 9</td>
+          <td>Revs 6 v Bears 2</td>
+          <td>Warriors</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>28 Sep 25</td>
+          <td>Expos 4 v Oilers 3</td>
+          <td>Warriors 7 v Bulls 4</td>
+          <td>Hot Wings 4 v Revs 9</td>
+          <td>Bears</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>21 Sep 25</td>
+          <td>Oilers 5 v Bulls 7</td>
+          <td>Warriors 4 v Bears 2</td>
+          <td>Expos 11 v Revs 5</td>
+          <td>Hot Wings</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>14 Sep 25</td>
+          <td>Bears 3 v Bulls 5</td>
+          <td>Revs 4 v Oilers 4 (OTL)</td>
+          <td>Hot Wings 6 v Warriors 4</td>
+          <td>Expo</td>
+        </tr>
+      </table>
+    </div>
+  </section>
 </body>
 </html>
